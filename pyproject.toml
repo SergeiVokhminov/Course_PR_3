@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "course-pr-3"
+version = "0.1.0"
+description = ""
+authors = ["sergei_vokhminov <rreaper@list.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
