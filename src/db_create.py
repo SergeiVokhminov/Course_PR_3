@@ -39,7 +39,7 @@ def create_db(db_name: str, params: dict[str, Any]) -> None:
                 open_vacancies INT)"""
         )
 
-    with conn.cursor() as cur:  #
+    with conn.cursor() as cur:
         cur.execute(
             """CREATE TABLE vacancies (
                 vacancy_id INTEGER PRIMARY KEY,
