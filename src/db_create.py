@@ -52,7 +52,7 @@ def create_db(db_name: str, params: dict[str, Any]) -> None:
                 area TEXT,
                 salary FLOAT,
                 FOREIGN KEY (employer_id) REFERENCES employers(employer_id)
-                )"""
+                );"""
         )
 
     conn.commit()

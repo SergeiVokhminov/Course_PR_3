@@ -27,7 +27,7 @@ def save_info_employer_database(
         # заполняем таблицу vacancies
         for vacancy in vacancies:
             vacancy_id = vacancy.get("vacancy_id")
-            # employer_id = vacancy.get("employer_id")
+            employer_id = vacancy.get("employer_id")
             vacancy_name = vacancy.get("vacancy_name")
             employer_name = vacancy.get("employer_name")
             url = vacancy.get("url")
