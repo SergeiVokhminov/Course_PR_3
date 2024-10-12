@@ -1,7 +1,8 @@
+from typing import Any
+
 import requests
 
 from src.abstract_class import Parser
-from typing import Any
 
 
 class HeadHunterApi(Parser):
@@ -57,7 +58,7 @@ class HeadHunterApi(Parser):
                 )
         return emp_list
 
-    def get_vacancies_employer(self, employer_id: list):
+    def get_vacancies_employer(self, employer_id: Any) -> Any:
         """Метод получения вакансий по id работодателя."""
         # self.__params_vac_emp["employer_id"] = employer_id
         # while self.__params_vac_emp.get("page") != 1:
@@ -73,7 +74,7 @@ class HeadHunterApi(Parser):
                 break
         return self.__vacancies_employer_list
 
-    def get_load_vac_emp(self, __vacancies_list: list[dict]):
+    def get_load_vac_emp(self, __vacancies_list: list[dict]) -> Any:
         """Метод получения списка вакансий работодателй по определенным ключам."""
         vac_emp_list = []
 

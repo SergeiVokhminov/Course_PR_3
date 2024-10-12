@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 class Parser(ABC):
@@ -17,9 +18,9 @@ class ReadWriteFile(ABC):
     """Абстрактный класс по чтению/записи файла."""
 
     @abstractmethod
-    def read_new_vacancy_file(self) -> None:
+    def read_new_vacancy_file(self) -> Any:
         pass
 
     @abstractmethod
-    def delete_file(self) -> None:
+    def delete_file(self) -> Any:
         pass

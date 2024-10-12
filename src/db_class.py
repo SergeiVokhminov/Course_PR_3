@@ -26,7 +26,7 @@ class DBManager:
 
         return emp_name
 
-    def get_companies_and_vacancies_count(self) -> list[dict[str, str, Any]]:
+    def get_companies_and_vacancies_count(self) -> Any:
         """Метод получает список всех компаний и количество вакансий у каждой компании."""
         conn = self.__connect_database()
         with conn.cursor() as cur:
@@ -37,7 +37,7 @@ class DBManager:
 
         return emp_vacs
 
-    def get_all_vacancies(self):
+    def get_all_vacancies(self) -> Any:
         """Метод получает список всех вакансий с указанием названия компании,
         названия вакансии и зарплаты и ссылки на вакансию."""
         conn = self.__connect_database()
@@ -49,7 +49,7 @@ class DBManager:
 
         return vacs
 
-    def get_avg_salary(self):
+    def get_avg_salary(self) -> Any:
         """Метод получает среднюю зарплату по вакансиям."""
         conn = self.__connect_database()
         with conn.cursor() as cur:
@@ -60,7 +60,7 @@ class DBManager:
 
         return salary
 
-    def get_vacancies_with_higher_salary(self):
+    def get_vacancies_with_higher_salary(self) -> Any:
         """Метод получает список всех вакансий, у которых зарплата выше средней по всем вакансиям."""
         conn = self.__connect_database()
         with conn.cursor() as cur:
@@ -71,17 +71,18 @@ class DBManager:
 
         return higher_salary
 
-    def get_vacancies_with_keyword(self, keyword: str):
+    def get_vacancies_with_keyword(self, keyword: str) -> Any:
         """Метод получает список всех вакансий,
         в которых содержится переданное в метод слово, например python."""
         conn = self.__connect_database()
         with conn.cursor() as cur:
-            cur.execute(f"""SELECT * FROM vacancies WHERE vacancy_name LIKE '%{keyword}%' 
+            cur.execute(
+                f"""SELECT * FROM vacancies WHERE vacancy_name LIKE '%{keyword}%' 
                             OR employer_name LIKE '%{keyword}%' 
                             OR requirement LIKE '%{keyword}%' 
                             OR responsibility LIKE '%{keyword}%' 
                             OR area LIKE '%{keyword}%' """
-                        )
+            )
             all_vac = cur.fetchall()
 
         conn.close()

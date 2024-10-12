@@ -3,9 +3,8 @@ from src.api_work import HeadHunterApi
 from src.db_class import DBManager
 from src.db_create import create_db
 from src.db_save_info import save_info_employer_database
-
 from src.file_work import JobFile
-from src.utils import get_employers_id, prints_a_greeting, get_name_employers
+from src.utils import get_employers_id, get_name_employers, prints_a_greeting
 
 
 def main() -> None:
