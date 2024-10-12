@@ -1,8 +1,8 @@
 import json
 import os
 from abc import ABC
-
 from typing import Any
+
 from config import NEW_PATH_TO_FILE, PATH_TO_FILE
 from src.abstract_class import ReadWriteFile
 
@@ -37,7 +37,7 @@ class JobFile(ReadWriteFile, ABC):
         with open(self.path_file, "w", encoding="UTF-8") as f:
             json.dump(vacancies, f, ensure_ascii=False, indent=4)
 
-    def read_new_vacancy_file(self):
+    def read_new_vacancy_file(self) -> Any:
         """Читает данные из нового JSON-файла."""
         # print(self.path_file)
         with open(self.path_file, encoding="UTF-8") as f:
@@ -50,7 +50,7 @@ class JobFile(ReadWriteFile, ABC):
 
 
 if __name__ == "__main__":
-    user_file = JobFile()
+    user_file = JobFile("employers.json")
     u = user_file.read_file()
     print(u)
     print(len(u))

@@ -1,5 +1,5 @@
-from datetime import datetime, date
-from typing import Any, List
+from datetime import datetime
+from typing import Any
 
 
 def prints_a_greeting() -> Any:
@@ -26,13 +26,13 @@ def prints_a_greeting() -> Any:
             finish_time = datetime.strptime(finish, "%H:%M:%S").time()
             if start_time <= time_greeting <= finish_time:
                 # logger.info("Функция prints_a_greeting завершила работу и вывела результат.")
-                print(f"{greeting_dict.get(item)[0]} {user_name}!\nСейчас: {str_date_now}\nВремя: {str_time_now}")
+                print(f"{greeting_dict.get(item)[0]}{user_name}!\nСегодня: {str_date_now}\nВремя: {str_time_now}")
     except Exception:
         # logger.info("Функция prints_a_greeting завершила работу с ошибкой.")
         raise ValueError("Введены неверные данные!")
 
 
-def get_employers_id(employers_list: list[dict]):
+def get_employers_id(employers_list: list[dict]) -> list:
     """Функция получения id работодателей"""
     list_id = []
     for item in employers_list:
@@ -42,27 +42,43 @@ def get_employers_id(employers_list: list[dict]):
     return list_id
 
 
+def get_name_employers(employers_list: list[dict]) -> list:
+    """Функция получения id работодателей"""
+    list_name = []
+    for item in employers_list:
+        for key in item.keys():
+            if key == "employer_name":
+                list_name.append(item[key])
+    return list_name
+
+
 if __name__ == "__main__":
     employers = [
         {
             "employer_id": "1942330",
-            "name": "Пятёрочка",
+            "employer_name": "Пятёрочка",
             "url": "https://hh.ru/employer/1942330",
             "open_vacancies": 51108,
         },
         {
             "employer_id": "49357",
-            "name": "МАГНИТ, Розничная сеть",
+            "employer_name": "МАГНИТ, Розничная сеть",
             "url": "https://hh.ru/employer/49357",
             "open_vacancies": 34316,
         },
-        {"employer_id": "78638", "name": "Т-Банк", "url": "https://hh.ru/employer/78638", "open_vacancies": 15742},
+        {
+            "employer_id": "78638",
+            "employer_name": "Т-Банк",
+            "url": "https://hh.ru/employer/78638",
+            "open_vacancies": 15742,
+        },
     ]
     # print(prints_a_greeting())
-    print()
-    gg = get_employers_id(employers)
-    print(gg)
-    print(type(get_employers_id(employers)))
-    print(len(gg))
-    print()
-    print()
+    # print()
+    # gg = get_employers_id(employers)
+    # print(gg)
+    # print(type(get_employers_id(employers)))
+    # print(len(gg))
+    # print()
+    # asd = get_name_employers(employers)
+    # print(asd)

@@ -9,7 +9,7 @@ class Parser(ABC):
         pass
 
     @abstractmethod
-    def get_vacancies_employer(self, employer_id) -> None:
+    def get_vacancies_employer(self, employer_id: list[dict]) -> None:
         pass
 
 
@@ -17,9 +17,9 @@ class ReadWriteFile(ABC):
     """Абстрактный класс по чтению/записи файла."""
 
     @abstractmethod
-    def read_new_vacancy_file(self):
+    def read_new_vacancy_file(self) -> None:
         pass
 
     @abstractmethod
-    def delete_file(self):
+    def delete_file(self) -> None:
         pass

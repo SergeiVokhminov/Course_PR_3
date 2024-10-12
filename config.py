@@ -2,7 +2,6 @@
 #  Импорт библиотек
 import logging
 import os
-
 from configparser import ConfigParser
 
 #  Корневая директория проекта

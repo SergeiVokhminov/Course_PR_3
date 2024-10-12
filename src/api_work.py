@@ -24,7 +24,7 @@ class HeadHunterApi(Parser):
         else:
             print("Ошибка при получении данных", response.status_code)
 
-    def get_info_employers(self) -> list[dict]:
+    def get_info_employers(self) -> None:
         """Метод получения информации о работодателях."""
         while self.__params_emp.get("page") != 20:
             response = self.__api_connect()
@@ -36,7 +36,7 @@ class HeadHunterApi(Parser):
                 break
         return self.__employers_list
 
-    def get_load_emp(self, __employers: list[dict]):
+    def get_load_emp(self, __employers: list[dict]) -> list[dict]:
         """Метод получения информации о работодателях по определенным ключам."""
         emp_list = []
 
@@ -47,11 +47,16 @@ class HeadHunterApi(Parser):
                 url = emp.get("alternate_url")
                 open_vacancies = emp.get("open_vacancies")
                 emp_list.append(
-                    {"employer_id": emp_id, "employer_name": name, "employer_url": url, "open_vacancies": open_vacancies}
+                    {
+                        "employer_id": emp_id,
+                        "employer_name": name,
+                        "employer_url": url,
+                        "open_vacancies": open_vacancies,
+                    }
                 )
         return emp_list
 
-    def get_vacancies_employer(self, employer_id) -> list[dict]:
+    def get_vacancies_employer(self, employer_id: list):
         """Метод получения вакансий по id работодателя."""
         # self.__params_vac_emp["employer_id"] = employer_id
         # while self.__params_vac_emp.get("page") != 1:
@@ -67,7 +72,7 @@ class HeadHunterApi(Parser):
                 break
         return self.__vacancies_employer_list
 
-    def get_load_vac_emp(self, __vacancies_list):
+    def get_load_vac_emp(self, __vacancies_list: list[dict]):
         """Метод получения списка вакансий работодателй по определенным ключам."""
         vac_emp_list = []
 
@@ -116,29 +121,18 @@ if __name__ == "__main__":
     hh_api = HeadHunterApi()
     #  получаем всю информацию о работодателях
     emp_info = hh_api.get_info_employers()
-    # print(emp_info)
-    # print(len(emp_info))
-    # print(type(emp_info))
-    # print()
+    print(emp_info)
 
     #  получаем сокращенную информацию о работодателях
     user_list_employers = hh_api.get_load_emp(emp_info)
-    # print(user_list_employers)
-    # print(type(user_list_employers))
-    # print(len(user_list_employers))
-    # print()
+    print(user_list_employers)
 
     user_id_list = ("3148", "2060086", "4623486")
 
     #  получаем вакансии работодателя по его id
     vacancies = hh_api.get_vacancies_employer(user_id_list)  # "2060086", "4623486"
-    # print(vacancies)
-    # print(len(vacancies))
-    # print(type(vacancies))
-    # print()
+    print(vacancies)
 
     # получаем сокращенную информации о вакансиях работодателя
     list_vacancies = hh_api.get_load_vac_emp(vacancies)
-    # print(list_vacancies)
-    # print(len(list_vacancies))
-    # print(type(list_vacancies))
+    print(list_vacancies)

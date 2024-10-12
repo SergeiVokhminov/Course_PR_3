@@ -6,16 +6,16 @@ import psycopg2
 class DBManager:
     """Класс для получения информации о работодателях и их вакансиях из базы данных."""
 
-    def __init__(self, db_name: str, params: dict[str, Any]) -> None:
+    def __init__(self, db_name: str, params: dict[str, Any]):
         """Инициализатор класса DBManager"""
         self.db_name = db_name
         self.__params = params
 
-    def __connect_database(self):
+    def __connect_database(self) -> Any:
         """Подключение к базе данных"""
         return psycopg2.connect(dbname=self.db_name, **self.__params)
 
-    def get_companies_and_vacancies_count(self):
+    def get_companies_and_vacancies_count(self) -> list[dict[str, str, Any]]:
         """Метод получает список всех компаний и количество вакансий у каждой компании."""
         conn = self.__connect_database()
         with conn.cursor() as cur:
@@ -43,7 +43,7 @@ class DBManager:
         conn = self.__connect_database()
         with conn.cursor() as cur:
             cur.execute("SELECT AVG(salary) FROM vacancies")
-            salary = cur.fetchall()
+            salary = round(cur.fetchone()[0])
 
         conn.close()
 
@@ -65,7 +65,12 @@ class DBManager:
         в которых содержится переданное в метод слово, например python."""
         conn = self.__connect_database()
         with conn.cursor() as cur:
-            cur.execute(f"""SELECT * FROM vacancies where vacancy_name LIKE '%{keyword}%' """)
+            cur.execute(f"""SELECT * FROM vacancies WHERE vacancy_name LIKE '%{keyword}%' 
+                            OR employer_name LIKE '%{keyword}%' 
+                            OR requirement LIKE '%{keyword}%' 
+                            OR responsibility LIKE '%{keyword}%' 
+                            OR area LIKE '%{keyword}%' """
+                        )
             all_vac = cur.fetchall()
 
         conn.close()
