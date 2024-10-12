@@ -7,13 +7,24 @@ class DBManager:
     """Класс для получения информации о работодателях и их вакансиях из базы данных."""
 
     def __init__(self, db_name: str, params: dict[str, Any]):
-        """Инициализатор класса DBManager"""
+        """Инициализатор класса DBManager."""
         self.db_name = db_name
         self.__params = params
 
     def __connect_database(self) -> Any:
-        """Подключение к базе данных"""
+        """Подключение к базе данных."""
         return psycopg2.connect(dbname=self.db_name, **self.__params)
+
+    def get_employer_name(self) -> Any:
+        """Метод получает список всех компаний."""
+        conn = self.__connect_database()
+        with conn.cursor() as cur:
+            cur.execute("""SELECT employer_name FROM employers""")
+            emp_name = cur.fetchall()
+
+        conn.close()
+
+        return emp_name
 
     def get_companies_and_vacancies_count(self) -> list[dict[str, str, Any]]:
         """Метод получает список всех компаний и количество вакансий у каждой компании."""

@@ -39,7 +39,7 @@ def create_db(db_name: str, params: dict[str, Any]) -> None:
                 open_vacancies INT)"""
         )
 
-    with conn.cursor() as cur:  # FOREIGN KEY (employer_id) REFERENCES employers(employer_id))
+    with conn.cursor() as cur:  #
         cur.execute(
             """CREATE TABLE vacancies (
                 vacancy_id INTEGER PRIMARY KEY,
@@ -50,7 +50,8 @@ def create_db(db_name: str, params: dict[str, Any]) -> None:
                 requirement TEXT,
                 responsibility TEXT,
                 area TEXT,
-                salary FLOAT
+                salary FLOAT,
+                FOREIGN KEY (employer_id) REFERENCES employers(employer_id)
                 )"""
         )
 

@@ -43,7 +43,7 @@ def get_employers_id(employers_list: list[dict]) -> list:
 
 
 def get_name_employers(employers_list: list[dict]) -> list:
-    """Функция получения id работодателей"""
+    """Функция получения имени работодателей"""
     list_name = []
     for item in employers_list:
         for key in item.keys():

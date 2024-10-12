@@ -1,6 +1,7 @@
 import requests
 
 from src.abstract_class import Parser
+from typing import Any
 
 
 class HeadHunterApi(Parser):
@@ -24,7 +25,7 @@ class HeadHunterApi(Parser):
         else:
             print("Ошибка при получении данных", response.status_code)
 
-    def get_info_employers(self) -> None:
+    def get_info_employers(self) -> Any:
         """Метод получения информации о работодателях."""
         while self.__params_emp.get("page") != 20:
             response = self.__api_connect()

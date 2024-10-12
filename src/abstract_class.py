@@ -5,11 +5,11 @@ class Parser(ABC):
     """Абстрактный класс по работе с API сервисом."""
 
     @abstractmethod
-    def get_info_employers(self) -> None:
+    def get_info_employers(self) -> list[dict]:
         pass
 
     @abstractmethod
-    def get_vacancies_employer(self, employer_id: list[dict]) -> None:
+    def get_vacancies_employer(self, employer_id: list[dict]) -> list[dict]:
         pass
 
 

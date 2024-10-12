@@ -5,7 +5,7 @@ from src.db_create import create_db
 from src.db_save_info import save_info_employer_database
 
 from src.file_work import JobFile
-from src.utils import get_employers_id, prints_a_greeting
+from src.utils import get_employers_id, prints_a_greeting, get_name_employers
 
 
 def main() -> None:
@@ -39,6 +39,9 @@ def main() -> None:
     # получаем список id работодателей
     id_employers_list = get_employers_id(top_employers)
 
+    # получаем список имен работодателей
+    name_emp_list = get_name_employers(top_employers)
+
     # получаем список вакансий по id работодателя
     vacancies_employer = hh_api.get_vacancies_employer(id_employers_list)
 
@@ -57,6 +60,8 @@ def main() -> None:
         "db_test",
         params,
     )
+
+    print(f"Для обработки выбраны следующие компании:\n{name_emp_list}")
 
     print(
         """Что сделать с полученными данными?
